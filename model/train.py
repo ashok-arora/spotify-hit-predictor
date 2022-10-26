@@ -13,7 +13,7 @@ import pickle
 import warnings
 warnings.filterwarnings("ignore")
 
-df = pd.read_csv("./combined_dataset.csv")
+df = pd.read_csv("./datasets/combined_dataset.csv")
 df = df.drop(['track', 'artist', 'uri'], axis=1)
 
 df_full_train, df_test = train_test_split(df, test_size=0.2, random_state=11)
@@ -50,6 +50,6 @@ model = xgb.train(xgb_params, dfulltrain, num_boost_round=200)
 
 output_file = 'final_model_xgb.bin'
 
-f_out = open(output_file, 'wb') 
+f_out = open(output_file, 'wb')
 pickle.dump((dv, model), f_out)
 f_out.close()
